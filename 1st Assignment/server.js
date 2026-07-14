@@ -1,9 +1,15 @@
 const express = require("express");
+const swaggerUi = require("swagger-ui-express");
+const openApiSpec = require("./openapi.json");
+
 const app = express();
 const PORT = 3000;
 
 // Parse JSON request bodies
 app.use(express.json());
+
+// ── Swagger UI ───────────────────────────────────────────────
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(openApiSpec));
 
 // ── In-memory "database" ────────────────────────────────────
 const SEED_TASKS = [

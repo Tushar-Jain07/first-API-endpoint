@@ -2,6 +2,9 @@ const express = require("express");
 const app = express();
 const PORT = 3000;
 
+// Parse JSON request bodies
+app.use(express.json());
+
 // ── In-memory "database" ────────────────────────────────────
 let tasks = [
   { id: 1, title: "Learn Express basics", done: false },
@@ -39,6 +42,25 @@ app.get("/tasks/:id", (req, res) => {
   }
 
   res.json(task);
+});
+
+// ── Create a task ────────────────────────────────────────────
+app.post("/tasks", (req, res) => {
+  const { title } = req.body;
+
+  // Validate: title must exist and be a non-empty string
+  if (!title || typeof title !== "string" || title.trim().length === 0) {
+    return res.status(400).json({ error: "Title is required" });
+  }
+
+  const newTask = {
+    id: nextId++,
+    title: title.trim(),
+    done: false,
+  };
+
+  tasks.push(newTask);
+  res.status(201).json(newTask);
 });
 
 app.listen(PORT, () => {

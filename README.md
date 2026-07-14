@@ -15,8 +15,9 @@ A complete CRUD API for managing to-do tasks, built with **Node.js** and **Expre
 ### Install & Run
 
 ```bash
-# Clone the repo and enter the project
-cd "1st Assignment"
+# Clone the repo
+git clone https://github.com/Tushar-Jain07/first-API-endpoint.git
+cd first-API-endpoint
 
 # Install dependencies
 npm install
@@ -199,7 +200,6 @@ Created 2 new tasks, restarted the server, ran `GET /tasks` — only the origina
 ## Project Structure
 
 ```
-1st Assignment/
 ├── server.js          # Express app — all CRUD routes (~130 lines)
 ├── openapi.json       # OpenAPI 3.0 spec for Swagger UI
 ├── package.json       # Dependencies and scripts
